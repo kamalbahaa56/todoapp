@@ -18,19 +18,25 @@ class _HomePageState extends State<HomePage> {
    
    ];
    final TasksController = TextEditingController();
-
+// Funcation to change state 
    Changestatus(int taskIndex){
     setState(() {
       alltasks[taskIndex].status=!alltasks[taskIndex].status;
     });
    
    }
+   
+   // Funcation To Add New Task
+   
    func(){
     
     setState(() {
    alltasks.add(Task(Title: '${TasksController.text}',status: false),);
     });
    }
+  
+  
+  // Funcation to counter done tasks
   int funcCalculateTasks(){
     int doneTasks = 0;
     
@@ -43,6 +49,8 @@ class _HomePageState extends State<HomePage> {
  });
     return doneTasks;
    }
+    
+    // Funcation to Delete Task
     ddeletetask(int deletetasks){
       setState(() {
         alltasks.remove(alltasks[deletetasks]);
@@ -70,7 +78,7 @@ class _HomePageState extends State<HomePage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-            Text('${funcCalculateTasks()}/${alltasks.length}',style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),),
+            Text('${funcCalculateTasks()}/${alltasks.length}',style:funcCalculateTasks()==alltasks.length? TextStyle(color: Colors.greenAccent,fontSize: 25,fontWeight: FontWeight.bold):TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold)),
         Expanded(
           child: ListView.builder(
             itemBuilder: (context,index){
